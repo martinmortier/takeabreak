@@ -1,24 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import logoNotification from './relaxIcon.png'
 
 function App() {
 
-  const notification = () => {
-    return chrome.notifications.create({
-      title: 'Reminder',
-      message:'Test reminder',
-      iconUrl:logoNotification,
-      type:'basic'
-    })
+  const setTimer = (): void => {
+    const startTimerNotification = true
+    chrome.storage.sync.set({startTimerNotification: startTimerNotification})
+    chrome.runtime.reload()
   }
-
-  useEffect(() => {
-    notification()
-  }, [])
 
   return (
     <div>
+      <button onClick={() => setTimer()}>Set timer</button>
     </div>
   );
 }
