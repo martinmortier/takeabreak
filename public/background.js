@@ -1,7 +1,7 @@
-chrome.runtime.onInstalled.addListener(() => {
+chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(
-    "startTimerNotification",
-    ({ startTimerNotification }) => {
+    ["startTimerNotification","time"],
+    ({ startTimerNotification, time }) => {
       if (startTimerNotification) {
         setInterval(() => {
           chrome.notifications.create({
@@ -10,7 +10,7 @@ chrome.runtime.onInstalled.addListener(() => {
             iconUrl: "./relaxIcon.png",
             type: "basic",
           });
-        }, 3000);
+        }, time);
       }
     }
   );
