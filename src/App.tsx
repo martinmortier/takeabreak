@@ -1,30 +1,32 @@
-import React, { ChangeEvent, useState } from "react";
+import React,{ useState } from "react";
 import "./App.css";
 function App() {
-  const [time, setTime] = useState<number>(50000);
+  const [time, setTime] = useState<number>(5000);
+  const [startTimerNotification, setStartTimerNotification] = useState<boolean>(false)
 
   const startTimer = (time: number): void => {
-    const startTimerNotification = true;
+    setStartTimerNotification(true)
     chrome.storage.sync.set({
       startTimerNotification: startTimerNotification,
       time: time,
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const number = Number(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const number: number = Number(e.target.value);
     setTime(number);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     startTimer(time);
   };
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <select value={time} onChange={(e) => handleChange(e)}>
+      <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}>
+        <select value={time} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleChange(e)}>
+          <option value="5000">5 secondes</option>
           <option value="50000">5 minutes</option>
           <option value="150000">15 minutes</option>
           <option value="300000">30 minutes</option>
