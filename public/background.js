@@ -1,28 +1,23 @@
-let start = false;
-let time = 0;
-
+let interval;
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(
     ["startTimerNotification", "time"],
     ({ startTimerNotification, time }) => {
-      if (startTimerNotification) {
-        start = true;
-        time = time
+      if (startTimerNotification && time > 0) {
+        clearInterval(interval)
+        interval = setInterval(
+          () => {
+            chrome.notifications.create({
+              title: "Reminder",
+              message: "Test reminder",
+              iconUrl: "./relaxIcon.png",
+              type: "basic",
+            })},
+          time
+        );
       }
     }
   );
 });
 
-chrome.runtime.onInstalled.addListener(() => {
-  setInterval(() => {
-    if (start) {
-      setInterval(() => {
-        chrome.notifications.create({
-          title: "Reminder",
-          message: "Test reminder",
-          iconUrl: "./relaxIcon.png",
-          type: "basic",
-        });
-      }, time);
-  }}, 1000);
-});
+//TODO: Save startTimerNotification and time value in App.tsx
