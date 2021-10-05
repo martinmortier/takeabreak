@@ -3,7 +3,8 @@ import React,{ MouseEventHandler, useState } from "react";
 import "./App.css";
 import TimerForm from "./components/TimerForm";
 function App() {
-  const [time, setTime] = useState<number>(0);
+  const VALUE_START = 5000
+  const [time, setTime] = useState<number>(VALUE_START);
   const [startTimerNotification, setStartTimerNotification] = useState<boolean>(false)
 
   const startTimer = (time: number): void => {
@@ -17,23 +18,19 @@ function App() {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const number: number = Number(e.target.value);
     setTime(number);
-    startTimer(time)
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    startTimer(time);
+    startTimer(number)
   };
 
   const handleChangeStartTimer = (e: React.ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault()
     setStartTimerNotification(e.target.checked)
+    startTimer(time)
   }
 
   return (
     <div>
       <Switch name="Start timer" onChange={handleChangeStartTimer}/>
-      <TimerForm handleChange={handleChange} handleSubmit={handleSubmit} time={time}/>
+      <TimerForm handleChange={handleChange} time={time}/>
     </div>
   );
 }
