@@ -3,7 +3,6 @@ chrome.storage.onChanged.addListener(() => {
   chrome.storage.sync.get(
     ["startTimerNotification", "time"],
     ({ startTimerNotification, time }) => {
-       console.log(startTimerNotification, "////", time);
       clearInterval(interval);
       if (startTimerNotification && time > 0) {
         interval = setInterval(() => {

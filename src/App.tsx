@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import TimerForm from "./components/TimerForm";
 function App() {
-  const VALUE_START = 5000;
   const [time, setTime] = useState<number>(5000);
   const [startTimerNotification, setStartTimerNotification] = useState<boolean>(false);
 
