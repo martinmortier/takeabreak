@@ -1,8 +1,9 @@
 import { Switch } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import TimerForm from "./components/TimerForm";
+import { useStyles } from './App.styles'
 function App() {
+  const styles = useStyles()
   const [time, setTime] = useState<number>(5000);
   const [startTimerNotification, setStartTimerNotification] = useState<boolean>(false);
 
@@ -24,10 +25,9 @@ function App() {
   ): void => {
     e.preventDefault();
     setStartTimerNotification(e.target.checked);
-    console.log("TIME",time);
     startTimer(time, e.target.checked);
   };
-  
+
   const syncData = (): void => {
     chrome.storage.sync.get(
       ["startTimerNotification", "time"],
@@ -43,7 +43,8 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.root}>
+    <h1 className={styles.title}>Take a break !</h1>
       <Switch name="Start timer" onChange={handleChangeStartTimer} checked={startTimerNotification}/>
       {startTimerNotification && (
         <TimerForm handleChange={handleChange} time={time} />
