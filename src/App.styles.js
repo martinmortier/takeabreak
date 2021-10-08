@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { fontSize } from "@mui/system";
 
 export const useStyles = makeStyles({
   root: {
@@ -8,11 +9,23 @@ export const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "center",
     alignContent: "center",
-    flexShrink: 1,
+    height: "100vh",
   },
   title: {
     fontWeight: "bold",
-    color:"#f7ede2"
+    color: "#f7ede2",
+    fontSize:"1.5em"
   },
+  clockEmoji: {
+    fontSize:"2em",
+    textAlign:"center",
+    marginTop: 0
+  },
+  switch:{
+    display:"flex",
+    flexDirection:'row',
+    justifyContent:'center',
+    color:"white",
+    fontSize:"1.2em"
+  }
 });
-

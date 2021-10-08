@@ -7,8 +7,8 @@ chrome.storage.onChanged.addListener(() => {
       if (startTimerNotification && time > 0) {
         interval = setInterval(() => {
           chrome.notifications.create({
-            title: "Reminder",
-            message: "Test reminder",
+            title: "It's time to take a beak !",
+            message: "Don't forget to drink some water and sit on your chair properly 😄",
             iconUrl: "./relaxIcon.png",
             type: "basic",
           });
@@ -17,5 +17,3 @@ chrome.storage.onChanged.addListener(() => {
     }
   );
 });
-
-//TODO: Save startTimerNotification and time value in App.tsx

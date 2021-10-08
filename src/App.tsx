@@ -44,8 +44,13 @@ function App() {
 
   return (
     <div className={styles.root}>
-    <h1 className={styles.title}>Take a break !</h1>
+    <h1 className={styles.title}>Take a break reminder ! </h1>
+    <p className={styles.clockEmoji}>⏰</p>
+    <div className={styles.switch}>
+      <p>Start: OFF</p>
       <Switch name="Start timer" onChange={handleChangeStartTimer} checked={startTimerNotification}/>
+      <p>ON</p>
+      </div>
       {startTimerNotification && (
         <TimerForm handleChange={handleChange} time={time} />
       )}
