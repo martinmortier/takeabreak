@@ -1,4 +1,4 @@
-import { Switch } from "@mui/material";
+import { SelectChangeEvent, Switch } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TimerForm from "./components/TimerForm";
 import { useStyles } from './App.styles'
@@ -14,7 +14,7 @@ function App() {
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleChange = (e: SelectChangeEvent<number>): void => {
     const number: number = Number(e.target.value);
     setTime(number);
     startTimer(number, startTimerNotification);

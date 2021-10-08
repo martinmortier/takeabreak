@@ -1,19 +1,22 @@
 import React, { ChangeEventHandler } from "react";
+import { FormControl, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 type TimerFormprops = {
-  handleChange: ChangeEventHandler<HTMLSelectElement>;
+  handleChange: (e: SelectChangeEvent<number>) => void;
   time: number;
 };
 const TimerForm = ({ handleChange, time }: TimerFormprops) => {
   return (
     <div>
-      <select value={time} onChange={handleChange}>
-        <option value="5000">5 secondes</option>
-        <option value="50000">5 minutes</option>
-        <option value="150000">15 minutes</option>
-        <option value="300000">30 minutes</option>
-        <option value="600000">1 hours</option>
-      </select>
+      <FormControl fullWidth>
+      <Select value={time} onChange={handleChange}>
+        <MenuItem value={5000}>5 secondes</MenuItem>
+        <MenuItem value={500000}>5 minutes</MenuItem>
+        <MenuItem value={15000}>15 minutes</MenuItem>
+        <MenuItem value={300000}>30 minutes</MenuItem>
+        <MenuItem value={600000}>1 hours</MenuItem>
+      </Select>
+      </FormControl>
     </div>
   );
 };
