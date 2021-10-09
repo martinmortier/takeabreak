@@ -48,7 +48,7 @@ function App() {
     <h1 className={styles.title}>Take a break reminder ! </h1>
     <p className={styles.clockEmoji}>⏰</p>
     <div className={styles.switch}>
-      <p style={{color: theme.fontColor}}>Start: OFF</p>
+      <p style={{color: theme.fontColor}}>Timer: OFF</p>
       <Switch name="Start timer" onChange={handleChangeStartTimer} checked={startTimerNotification}/>
       <p style={{color: theme.fontColor}}>ON</p>
       </div>

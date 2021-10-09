@@ -11,7 +11,6 @@ export const useStyles = makeStyles({
     height: "100vh",
   },
   title: {
-    fontWeight: "bold",
     color: "#f7ede2",
     fontSize:"1.5em"
   },
