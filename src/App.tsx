@@ -1,12 +1,13 @@
 import { SelectChangeEvent, Switch } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TimerForm from "./components/TimerForm";
 import { useStyles } from './App.styles'
+import { ThemeContext } from ".";
 function App() {
   const styles = useStyles()
   const [time, setTime] = useState<number>(5000);
   const [startTimerNotification, setStartTimerNotification] = useState<boolean>(false);
-
+  const theme = useContext(ThemeContext)
   const startTimer = (time: number, checked: boolean): void => {
     chrome.storage.sync.set({
       startTimerNotification: checked,
@@ -47,9 +48,9 @@ function App() {
     <h1 className={styles.title}>Take a break reminder ! </h1>
     <p className={styles.clockEmoji}>⏰</p>
     <div className={styles.switch}>
-      <p>Start: OFF</p>
+      <p style={{color: theme.fontColor}}>Start: OFF</p>
       <Switch name="Start timer" onChange={handleChangeStartTimer} checked={startTimerNotification}/>
-      <p>ON</p>
+      <p style={{color: theme.fontColor}}>ON</p>
       </div>
       {startTimerNotification && (
         <TimerForm handleChange={handleChange} time={time} />

@@ -1,5 +1,6 @@
 let interval;
-chrome.storage.onChanged.addListener(() => {
+
+function getStorage() {
   chrome.storage.sync.get(
     ["startTimerNotification", "time"],
     ({ startTimerNotification, time }) => {
@@ -8,7 +9,8 @@ chrome.storage.onChanged.addListener(() => {
         interval = setInterval(() => {
           chrome.notifications.create({
             title: "It's time to take a beak !",
-            message: "Don't forget to drink some water and sit on your chair properly 😄",
+            message:
+              "Don't forget to drink some water and sit on your chair properly 😄",
             iconUrl: "./relaxIcon.png",
             type: "basic",
           });
@@ -16,4 +18,11 @@ chrome.storage.onChanged.addListener(() => {
       }
     }
   );
+}
+chrome.storage.onChanged.addListener(() => {
+  getStorage();
+});
+
+chrome.runtime.onStartup.addListener(() => {
+  getStorage();
 });

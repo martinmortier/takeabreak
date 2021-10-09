@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import { fontSize } from "@mui/system";
 
 export const useStyles = makeStyles({
   root: {
